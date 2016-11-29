@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="state_economyModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="export">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Export_blnUSD" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gdp">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="GDP_blnUSD" Type="decimal" Precision="10" Scale="1" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gdpgrowth">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="GDPGrowth_percent" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="import1">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Import_blnUSD" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inflation">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+          <Property Name="Inflation_percent" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="national_debt">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Debt_GDP_percent" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="population">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Population_mln" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="unemployment">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Unemployment_percent" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Country_IdCountry" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Export_Country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="export" Type="Self.export" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="export">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GDP_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="gdp" Type="Self.gdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="gdp">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GDPGrowth_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="gdpgrowth" Type="Self.gdpgrowth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="gdpgrowth">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Import1_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="import1" Type="Self.import1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="import1">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Inflation_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="inflation" Type="Self.inflation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="inflation">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_National_Debt_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="national_debt" Type="Self.national_debt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="national_debt">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Population_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="population" Type="Self.population" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="population">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Unemployment_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="unemployment" Type="Self.unemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="unemployment">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="state_economyModelStoreContainer">
+          <EntitySet Name="country" EntityType="Self.country" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="export" EntityType="Self.export" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="gdp" EntityType="Self.gdp" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="gdpgrowth" EntityType="Self.gdpgrowth" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="import1" EntityType="Self.import1" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="inflation" EntityType="Self.inflation" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="national_debt" EntityType="Self.national_debt" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="population" EntityType="Self.population" Schema="state_economy" store:Type="Tables" />
+          <EntitySet Name="unemployment" EntityType="Self.unemployment" Schema="state_economy" store:Type="Tables" />
+          <AssociationSet Name="fk_Export_Country" Association="Self.fk_Export_Country">
+            <End Role="country" EntitySet="country" />
+            <End Role="export" EntitySet="export" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GDP_Country1" Association="Self.fk_GDP_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="gdp" EntitySet="gdp" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GDPGrowth_Country1" Association="Self.fk_GDPGrowth_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="gdpgrowth" EntitySet="gdpgrowth" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Import1_Country1" Association="Self.fk_Import1_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="import1" EntitySet="import1" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Inflation_Country1" Association="Self.fk_Inflation_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="inflation" EntitySet="inflation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_National_Debt_Country1" Association="Self.fk_National_Debt_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="national_debt" EntitySet="national_debt" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Population_Country1" Association="Self.fk_Population_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="population" EntitySet="population" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Unemployment_Country1" Association="Self.fk_Unemployment_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="unemployment" EntitySet="unemployment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="state_economyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="export" Relationship="Self.fk_Export_Country" FromRole="country" ToRole="export" />
+          <NavigationProperty Name="gdp" Relationship="Self.fk_GDP_Country1" FromRole="country" ToRole="gdp" />
+          <NavigationProperty Name="gdpgrowth" Relationship="Self.fk_GDPGrowth_Country1" FromRole="country" ToRole="gdpgrowth" />
+          <NavigationProperty Name="import1" Relationship="Self.fk_Import1_Country1" FromRole="country" ToRole="import1" />
+          <NavigationProperty Name="inflation" Relationship="Self.fk_Inflation_Country1" FromRole="country" ToRole="inflation" />
+          <NavigationProperty Name="national_debt" Relationship="Self.fk_National_Debt_Country1" FromRole="country" ToRole="national_debt" />
+          <NavigationProperty Name="population" Relationship="Self.fk_Population_Country1" FromRole="country" ToRole="population" />
+          <NavigationProperty Name="unemployment" Relationship="Self.fk_Unemployment_Country1" FromRole="country" ToRole="unemployment" />
+        </EntityType>
+        <EntityType Name="export">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Export_blnUSD" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Export_Country" FromRole="export" ToRole="country" />
+        </EntityType>
+        <EntityType Name="gdp">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="GDP_blnUSD" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_GDP_Country1" FromRole="gdp" ToRole="country" />
+        </EntityType>
+        <EntityType Name="gdpgrowth">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="GDPGrowth_percent" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_GDPGrowth_Country1" FromRole="gdpgrowth" ToRole="country" />
+        </EntityType>
+        <EntityType Name="import1">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Import_blnUSD" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Import1_Country1" FromRole="import1" ToRole="country" />
+        </EntityType>
+        <EntityType Name="inflation">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="Inflation_percent" Type="Decimal" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Inflation_Country1" FromRole="inflation" ToRole="country" />
+        </EntityType>
+        <EntityType Name="national_debt">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Debt_GDP_percent" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_National_Debt_Country1" FromRole="national_debt" ToRole="country" />
+        </EntityType>
+        <EntityType Name="population">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Population_mln" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Population_Country1" FromRole="population" ToRole="country" />
+        </EntityType>
+        <EntityType Name="unemployment">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Country_IdCountry" />
+          </Key>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Unemployment_percent" Type="Decimal" />
+          <Property Name="Country_IdCountry" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Unemployment_Country1" FromRole="unemployment" ToRole="country" />
+        </EntityType>
+        <Association Name="fk_Export_Country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="export" Type="Self.export" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="export">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GDP_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="gdp" Type="Self.gdp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="gdp">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_GDPGrowth_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="gdpgrowth" Type="Self.gdpgrowth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="gdpgrowth">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Import1_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="import1" Type="Self.import1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="import1">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Inflation_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="inflation" Type="Self.inflation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="inflation">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_National_Debt_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="national_debt" Type="Self.national_debt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="national_debt">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Population_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="population" Type="Self.population" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="population">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Unemployment_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="unemployment" Type="Self.unemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="unemployment">
+              <PropertyRef Name="Country_IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="state_economyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="country" EntityType="Self.country" />
+          <EntitySet Name="export" EntityType="Self.export" />
+          <EntitySet Name="gdp" EntityType="Self.gdp" />
+          <EntitySet Name="gdpgrowth" EntityType="Self.gdpgrowth" />
+          <EntitySet Name="import1" EntityType="Self.import1" />
+          <EntitySet Name="inflation" EntityType="Self.inflation" />
+          <EntitySet Name="national_debt" EntityType="Self.national_debt" />
+          <EntitySet Name="population" EntityType="Self.population" />
+          <EntitySet Name="unemployment" EntityType="Self.unemployment" />
+          <AssociationSet Name="fk_Export_Country" Association="Self.fk_Export_Country">
+            <End Role="country" EntitySet="country" />
+            <End Role="export" EntitySet="export" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GDP_Country1" Association="Self.fk_GDP_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="gdp" EntitySet="gdp" />
+          </AssociationSet>
+          <AssociationSet Name="fk_GDPGrowth_Country1" Association="Self.fk_GDPGrowth_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="gdpgrowth" EntitySet="gdpgrowth" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Import1_Country1" Association="Self.fk_Import1_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="import1" EntitySet="import1" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Inflation_Country1" Association="Self.fk_Inflation_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="inflation" EntitySet="inflation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_National_Debt_Country1" Association="Self.fk_National_Debt_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="national_debt" EntitySet="national_debt" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Population_Country1" Association="Self.fk_Population_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="population" EntitySet="population" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Unemployment_Country1" Association="Self.fk_Unemployment_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="unemployment" EntitySet="unemployment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="state_economyModelStoreContainer" CdmEntityContainer="state_economyEntities">
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="state_economyModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="export">
+            <EntityTypeMapping TypeName="state_economyModel.export">
+              <MappingFragment StoreEntitySet="export">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Export_blnUSD" ColumnName="Export_blnUSD" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gdp">
+            <EntityTypeMapping TypeName="state_economyModel.gdp">
+              <MappingFragment StoreEntitySet="gdp">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="GDP_blnUSD" ColumnName="GDP_blnUSD" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gdpgrowth">
+            <EntityTypeMapping TypeName="state_economyModel.gdpgrowth">
+              <MappingFragment StoreEntitySet="gdpgrowth">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="GDPGrowth_percent" ColumnName="GDPGrowth_percent" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="import1">
+            <EntityTypeMapping TypeName="state_economyModel.import1">
+              <MappingFragment StoreEntitySet="import1">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Import_blnUSD" ColumnName="Import_blnUSD" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inflation">
+            <EntityTypeMapping TypeName="state_economyModel.inflation">
+              <MappingFragment StoreEntitySet="inflation">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+                <ScalarProperty Name="Inflation_percent" ColumnName="Inflation_percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="national_debt">
+            <EntityTypeMapping TypeName="state_economyModel.national_debt">
+              <MappingFragment StoreEntitySet="national_debt">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Debt_GDP_percent" ColumnName="Debt_GDP_percent" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="population">
+            <EntityTypeMapping TypeName="state_economyModel.population">
+              <MappingFragment StoreEntitySet="population">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Population_mln" ColumnName="Population_mln" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unemployment">
+            <EntityTypeMapping TypeName="state_economyModel.unemployment">
+              <MappingFragment StoreEntitySet="unemployment">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Unemployment_percent" ColumnName="Unemployment_percent" />
+                <ScalarProperty Name="Country_IdCountry" ColumnName="Country_IdCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
