@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBEconomy_Data
 {
-    public class Class1
+    class GDPDynamicaViewModel
     {
+        public int Year { get; set; }
+        public Nullable<decimal> GDP { get; set; }
     }
 }
