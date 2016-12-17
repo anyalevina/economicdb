@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="187d37021d8347cca66cd6a803a9e590" Name="Diagram1">
+        <EntityTypeShape EntityType="state_economyModel.country" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.export" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.gdp" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.gdpgrowth" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.import1" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.inflation" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.national_debt" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.population" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="state_economyModel.unemployment" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <AssociationConnector Association="state_economyModel.fk_Export_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_GDP_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_GDPGrowth_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_Import1_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_Inflation_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_National_Debt_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_Population_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="state_economyModel.fk_Unemployment_Country1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
