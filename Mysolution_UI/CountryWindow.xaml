@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mysolution_UI"
         mc:Ignorable="d"
-        Title="Choose Country" Height="600" Width="500">
+        Title="Choose Country" Height="601" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition  Height="40"></RowDefinition>
