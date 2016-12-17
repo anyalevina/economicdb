@@ -1,0 +1,46 @@
+﻿<Window x:Class="Mysolution_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:gif="http://wpfanimatedgif.codeplex.com" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mysolution_UI"
+        mc:Ignorable="d"
+        Title="World Economic Trends" Height="500" Width="525" ResizeMode="NoResize" >
+
+    <Border BorderBrush="Black" BorderThickness="2" >
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image gif:ImageBehavior.AnimatedSource="Images/trends.gif" Grid.Row="0" Grid.ColumnSpan="4" 
+               gif:ImageBehavior.AutoStart="True"
+               Stretch="Fill"/>
+            <Menu Grid.Row="2" Background="Black"  Foreground="Salmon" Grid.ColumnSpan="4">
+                <MenuItem Width="170" HorizontalAlignment="Center" Height="40" FontSize="18" Header="View By Country" Click="ViewBycountry_Click"></MenuItem>
+                <MenuItem x:Name="YEarView"  Height="40" FontSize="18" Header="View By Year" >
+                    <Border BorderThickness="1" Background="Black"></Border>
+                    <MenuItem x:Name="TopEc" Background="Black" Foreground="Salmon" Header="Top Economies" Click="TopEcItemClick"></MenuItem>
+                    <MenuItem x:Name="BottomGdp" Background="Black" Foreground="Salmon" Header="Bottom Economies" Click="BottomGDPItemClick"></MenuItem>
+                    <MenuItem x:Name="FastGDPGrowth" Background="Black" Foreground="Salmon" Header="Fastest Growing Economies" Click="FastGDPGrowthItem_Click"></MenuItem>
+                    <MenuItem x:Name="sloGDPGrowth" Background="Black" Foreground="Salmon" Header="Slowest Growing Economies" Click="sloGDPGrwthItem_Click"> </MenuItem>
+                   
+                </MenuItem>
+                
+            </Menu>
+        
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="4" TextAlignment="Center" Foreground="Olive"
+                       FontSize="28" 
+                       Text="Welcome to the  World Economy archive! "> </TextBlock>
+    </Grid>
+    </Border>
+</Window>

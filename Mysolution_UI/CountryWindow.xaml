@@ -1,0 +1,48 @@
+﻿<Window x:Class="Mysolution_UI.CountryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mysolution_UI"
+        mc:Ignorable="d"
+        Title="Choose Country" Height="600" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="40"></RowDefinition>
+            <RowDefinition  ></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="SearchTextBox" Grid.Row="0" Grid.Column="0"  FontSize="16" TextChanged="TextChanged"></TextBox>
+        <Button x:Name="SearchButton" Grid.Row="0" Grid.Column="2" Click="SearchButtonClick">Search</Button>
+        <Button x:Name="AllCountriesButton" Grid.Row="0" Grid.Column="1" Click="AllCountriesButtonClick">See All Countries</Button>
+        <ListBox Name="CountryListBox"
+                 IsTextSearchCaseSensitive="False"
+                 TextSearch.TextPath="country.Name"
+                 TextSearch.Text="SearchTextBox"
+                 Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1" SelectionChanged="SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontSize="14" Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Menu Name="CountryMenu" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <MenuItem Name="Inflation" Click="Inflation_click" Height="40" Width="180" Header="See Inflation"></MenuItem>
+            <MenuItem x:Name="Unemployment" Height="40" Header="See Unemployment" Width="180" Click="Unemployment_Click"></MenuItem>
+            <MenuItem x:Name="GDP" Height="40" Header="See GDP" Width="180" Click="GdpItem_Click"></MenuItem>
+            <MenuItem x:Name="GDPGrowth" Height="40" Header="See GDP Growth" Width="180" Click="GDPGrowthItem_Click"></MenuItem>
+            <MenuItem Name="ExportItem" Height="40" Header="See Export" Width="180" Click="ExportItem_Click"></MenuItem>
+            <MenuItem x:Name="Import" Height="40" Header="See Import" Width="180" Click="ImportItem_Click"></MenuItem>
+            <MenuItem x:Name="NatDebt" Height="40" Header="See National Debt" Width="180" Click="NatDebtItem_Click"></MenuItem>
+            <MenuItem x:Name="Population" Height="40" Header="See Population" Width="180" Click="PopulationItemClick"></MenuItem>
+        </Menu>
+    </Grid>
+</Window>
