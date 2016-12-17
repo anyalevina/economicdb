@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="100"> </ColumnDefinition>
+            <ColumnDefinition Width="81"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBox Name="SearchTextBox" Grid.Row="0" Grid.Column="0"  FontSize="16" TextChanged="TextChanged"></TextBox>
         <Button x:Name="SearchButton" Grid.Row="0" Grid.Column="2" Click="SearchButtonClick">Search</Button>
