@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="Images/trends.gif" Grid.Row="0" Grid.ColumnSpan="4" 
                gif:ImageBehavior.AutoStart="True"
-               Stretch="Fill"/>
+               Stretch="Fill" Margin="0,0,-113.75,0"/>
             <Menu Grid.Row="2" Background="Black"  Foreground="Salmon" Grid.ColumnSpan="4">
                 <MenuItem Width="170" HorizontalAlignment="Center" Height="40" FontSize="18" Header="View By Country" Click="ViewBycountry_Click"></MenuItem>
                 <MenuItem x:Name="YEarView"  Height="40" FontSize="18" Header="View By Year" >
@@ -39,7 +39,7 @@
             </Menu>
         
             <TextBlock Grid.Row="1" Grid.ColumnSpan="4" TextAlignment="Center" Foreground="Olive"
-                       FontSize="28" 
+                       FontSize="27" 
                        Text="Welcome to the  World Economy archive! "> </TextBlock>
     </Grid>
     </Border>
