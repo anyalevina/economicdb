@@ -31,7 +31,7 @@ namespace Mysolution_UI
                 case "Export (bln USD)":
                     ExportListView.ItemsSource = rep.GetExportForCountry(cry);
                     break;
-                case "Unemployment(per cent)":
+                case "Unemployment (per cent)":
                     ExportListView.ItemsSource = rep.GetunemploymentForCountry(cry);
                     break;
                 case "Population (mln people)":

@@ -119,7 +119,7 @@ namespace Mysolution_Data
         }
         public List<EconomyViewModel> GetunemploymentForCountry(country ob)
         {
-            using (c)
+            using (var c = new Context())
             {
                 var res = c.country.FirstOrDefault(c1 => c1.Name == ob.Name);
                 if (res != null)
